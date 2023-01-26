@@ -7,6 +7,9 @@ const server = http.createServer((request, response) => {
   response.write('Hello World\n')
   response.end('Version: ' + process.env.NODE_VERSION + '\n')
 })
+app.get("/test",[], (req, res) => {
+  return res.json({"test": "update"});
+});
 
 server.listen(port)
 
