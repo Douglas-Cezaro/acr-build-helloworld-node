@@ -10,6 +10,7 @@ app.use(express.json());
 app.get("/test", [], (req, res) => {
   return res.json({ test: "update" });
 });
+
 const server = http.createServer(app);
 
 server.listen(port);
