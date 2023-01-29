@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as http from "http";
-import { createTypeormConn as getConnection } from "./createTypeormConn";
+// import { createTypeormConn as getConnection } from "./createTypeormConn";
 import { UserEntity } from "./entity/user.entity";
 
 const app = express();
