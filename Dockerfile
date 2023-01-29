@@ -16,4 +16,4 @@ RUN yarn build
 COPY . .
 
 EXPOSE 80
-CMD [ "build/app.js" ]
+CMD ["node", "build/app.js"]
