@@ -5,7 +5,7 @@ module.exports = [
     host: "localhost",
     port: 3306,
     username: "root",
-    password: process.env.DB_PASS,
+    password: "",
     database: "testApi",
     synchronize: true,
     logging: ["query", "error"],
