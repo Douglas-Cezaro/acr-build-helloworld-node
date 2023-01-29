@@ -1,4 +1,5 @@
-FROM node:16-alpine
+ARG REGISTRY_NAME
+FROM ${REGISTRY_NAME}/baseimages/node:15-alpine
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -15,4 +16,4 @@ RUN yarn build
 COPY . .
 
 EXPOSE 80
-CMD ["node", "build/app.js"]
+CMD ["node", "/src/server.js"]
