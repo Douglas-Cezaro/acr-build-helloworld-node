@@ -1,3 +1,13 @@
+if (process.env.NODE_ENV !== "production") {
+  const result = require("dotenv").config({
+    path: "./.env",
+  });
+
+  if (result.error) {
+    throw result.error;
+  }
+}
+
 module.exports = [
   {
     name: "development",
@@ -5,7 +15,7 @@ module.exports = [
     host: "localhost",
     port: 3306,
     username: "root",
-    password: "",
+    password: process.env.DB_PASS,
     database: "testApi",
     synchronize: true,
     logging: ["query", "error"],
