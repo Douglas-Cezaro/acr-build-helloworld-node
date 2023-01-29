@@ -17,7 +17,7 @@ module.exports = [
     host: "dougtestdba.mysql.database.azure.com",
     port: 3306,
     username: "doug",
-    password: secrets.REGISTRY_PASSWORD,
+    password: secrets.DB_PASS,
     database: "testApi",
     synchronize: true,
     ssl: {
