@@ -2,6 +2,8 @@ FROM node:16-alpine
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
+ARG DB_PASS
+ENV DB_PASS ${DB_PASS}
 
 COPY package*.json ./
 COPY tsconfig.json ./
