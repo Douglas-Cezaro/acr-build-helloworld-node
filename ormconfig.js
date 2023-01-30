@@ -1,9 +1,10 @@
-const result = require("dotenv").config({
-  path: "./.env",
-});
-
-if (result.error) {
-  throw result.error;
+if (process.env.NODE_ENV !== "production") {
+  const result = require("dotenv").config({
+    path: "./.env",
+  });
+  if (result.error) {
+    throw result.error;
+  }
 }
 
 module.exports = [
