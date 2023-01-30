@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: douglascezaro/app
+  name: testdocker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: douglascezaro/app
+      app: testdocker
   template:
     metadata:
       labels:
-        app: douglascezaro/app
+        app: testdocker
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
@@ -22,4 +22,4 @@ spec:
           value: ${{ secrets.DB_PASS }}
         ports:
         - containerPort: 80
-          name: douglascezaro/app
+          name: testdocker
