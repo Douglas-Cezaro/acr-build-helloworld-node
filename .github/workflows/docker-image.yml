@@ -34,8 +34,8 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          secrets: |
-            "DB_PASS=${{ secrets.DB_PASS}}"
+          build-args: |
+            "DB_PASS=${{ secrets.DB_PASS }}"
           tags: |
                 ${{ secrets.DOCKERHUB_USERNAME }}/app:${{github.ref_name}}
                 ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
