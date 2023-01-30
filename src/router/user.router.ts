@@ -12,6 +12,7 @@ class Routes {
 
   private init() {
     this.router.get("/", [], userController.findAll);
+    this.router.get("/one", [], userController.findOne);
   }
 }
 

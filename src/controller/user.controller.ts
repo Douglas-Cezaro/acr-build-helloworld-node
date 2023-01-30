@@ -17,6 +17,20 @@ class UserController {
       });
     }
   }
+  public async findOne(req: Request, res: Response) {
+    try {
+      const user = await getConnection
+        .getRepository(UserEntity)
+        .createQueryBuilder("user")
+        .getOne();
+
+      return res.status(200).send({ state: "ok", user });
+    } catch (err) {
+      return res.status(500).send({
+        error: "Erro ao buscar usuário",
+      });
+    }
+  }
 }
 export default new UserController();
 
