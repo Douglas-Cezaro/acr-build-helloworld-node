@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: douglascezaro/app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: douglascezaro/app
+  template:
+    metadata:
+      labels:
+        app: douglascezaro/app
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: app
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
+        env:
+        - name: DB_PASS
+          value: ${{ secrets.DB_PASS }}
+        ports:
+        - containerPort: 80
+          name: douglascezaro/app

@@ -39,3 +39,26 @@ jobs:
           tags: |
                 ${{ secrets.DOCKERHUB_USERNAME }}/app:${{github.ref_name}}
                 ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
+      - name: Azure login
+        id: login
+        uses: azure/login@v1.4.3
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set AKS context
+        id: set-context
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: '${{ secrets.resource_group }}' 
+          cluster-name: '${{ secrets.cluster_name }}'
+      - name: Setup kubectl
+        id: install-kubectl
+        uses: azure/setup-kubectl@v3
+      - name: Deploy to AKS
+        id: deploy-aks
+        uses: Azure/k8s-deploy@v4
+        with:
+          namespace: 'default'
+          manifests: |
+             azure.yaml
+          images: '${{ secrets.DOCKERHUB_USERNAME }}/app:latest'
+          pull-images: false 
