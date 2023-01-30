@@ -37,5 +37,5 @@ jobs:
           secrets: |
             "DB_PASS=${{ secrets.DB_PASS}}"
           tags: |
-                ${{ secrets.DOCKERHUB_USERNAME }}/app:${git describe --tags $(git rev-list --tags --max-count=1)}
+                ${{ secrets.DOCKERHUB_USERNAME }}/app:${{github.ref_name}}
                 ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
