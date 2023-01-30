@@ -60,5 +60,5 @@ jobs:
           namespace: 'default'
           manifests: |
              azure.yaml
-          images: '${{ secrets.DOCKERHUB_USERNAME }}/app:latest'
-          pull-images: true 
+          images: '${{ secrets.DOCKERHUB_USERNAME }}/app:${{github.ref_name}}'
+          pull-images: false 
