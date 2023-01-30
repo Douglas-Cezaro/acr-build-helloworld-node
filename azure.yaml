@@ -17,9 +17,6 @@ spec:
       containers:
       - name: app
         image: douglascezaro/app:latest
-        env:
-        - name: DB_PASS
-          value: ${{ secrets.DB_PASS }}
         ports:
         - containerPort: 80
           name: testdocker
