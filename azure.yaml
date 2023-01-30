@@ -16,7 +16,7 @@ spec:
         "beta.kubernetes.io/os": linux
       containers:
       - name: app
-        image: ${{ secrets.DOCKERHUB_USERNAME }}/app:latest
+        image: douglascezaro/app:latest
         env:
         - name: DB_PASS
           value: ${{ secrets.DB_PASS }}
