@@ -1,35 +1,26 @@
 import * as express from "express";
-import * as http from "http";
-import {
-  createTypeormConn,
-  createTypeormConn as getConnection,
-} from "./createTypeormConn";
-import { UserEntity } from "./entity/user.entity";
+import * as cors from "cors";
+import { User } from "./router";
 
-const app = express();
-const port = 80;
-app.use(express.json());
+class App {
+  public express: express.Application;
 
-createTypeormConn
-  .initialize()
-  .then(() => {
-    app.get("/test", [], async (req, res) => {
-      try {
-        const data = await getConnection.getRepository(UserEntity).find();
-        return res.status(200).send({ status: "OK", data: data });
-      } catch (error) {
-        console.log(error);
-        return res.status(500).send({ error });
-      }
-    });
+  constructor() {
+    this.express = express();
+    this.middleware();
+    this.routes();
+  }
 
-    const server = http.createServer(app);
+  private middleware(): void {
+    this.express.use(express.json());
+    this.express.use(express.urlencoded({ extended: true }));
+    this.express.use(cors());
+  }
 
-    server.listen(port);
+  private routes(): void {
+    this.express.use("/user", User());
+  }
+}
 
-    console.log(`Server running at http://localhost: ${port}`);
-  })
-  .catch((error) => {
-    console.log("TypeORM dont connected: %s", error);
-  });
+export default new App().express;
 

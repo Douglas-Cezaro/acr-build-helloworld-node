@@ -1,11 +1,9 @@
-if (process.env.NODE_ENV !== "production") {
-  const result = require("dotenv").config({
-    path: "./.env",
-  });
+const result = require("dotenv").config({
+  path: "./.env",
+});
 
-  if (result.error) {
-    throw result.error;
-  }
+if (result.error) {
+  throw result.error;
 }
 
 module.exports = [
@@ -16,10 +14,11 @@ module.exports = [
     port: 3306,
     username: "root",
     password: process.env.DB_PASS,
-    database: "testApi",
+    database: "testapi",
     synchronize: true,
     logging: ["query", "error"],
-    entities: ["src/entity/*.entity.ts"],
+    entities: ["src/entity/*.ts"],
+    migrations: ["src/migrations/*.ts"],
   },
   {
     name: "production",
@@ -28,13 +27,13 @@ module.exports = [
     port: 3306,
     username: "doug",
     password: process.env.DB_PASS,
-    database: "testApi",
+    database: "testapi",
     synchronize: true,
+    logging: ["query", "error"],
+    entities: ["build/entity/*.js"],
     ssl: {
       ca: process.env.SSL_CERT,
     },
-    logging: ["query", "error"],
-    entities: ["build/entity/*.entity.js"],
   },
 ];
 
